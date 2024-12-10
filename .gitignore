@@ -22,9 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+.yarn/
 .yarn*
-
-# Yarn Plug'n'Play
-.pnp.cjs
 
 .env
