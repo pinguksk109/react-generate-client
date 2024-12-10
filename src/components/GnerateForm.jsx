@@ -8,6 +8,8 @@ const GenerateForm = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setResponse("");
@@ -15,7 +17,7 @@ const GenerateForm = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:3000/generate", {
+      const res = await axios.post(`${API_URL}/generate`, {
         keyword,
       });
       setResponse(res.data.answer);
