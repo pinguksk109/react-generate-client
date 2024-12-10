@@ -26,3 +26,5 @@ yarn-error.log*
 
 # Yarn Plug'n'Play
 .pnp.cjs
+
+.env
