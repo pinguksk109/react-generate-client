@@ -1,54 +1,53 @@
-import React, { useState, useEffect } from "react";
-// import "./WebSocketForm.scss";
+import React, { useState } from "react";
+import "./WebSocketForm.scss";
 
 const WebSocketForm = () => {
   const [keyword, setKeyword] = useState("");
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [ws, setWs] = useState(null);
 
   const WS_URL = `ws://${process.env.REACT_APP_API_URL}/ws/generate`;
 
-  useEffect(() => {
-    const socket = new WebSocket(WS_URL);
-    setWs(socket);
+  const handleSubmit = (e) => {
+    console.log(e);
+    e.preventDefault();
+    setResponse("");
+    setError("");
+    setIsLoading(true);
 
-    socket.onopen = () => console.log("WebSocket接続成功");
+    const socket = new WebSocket(WS_URL);
+
+    socket.onopen = () => {
+      console.log("WebSocket接続成功");
+      socket.send(JSON.stringify({ keyword }));
+    };
+
+    socket.onmessage = (event) => {
+      console.log(event);
+      const data = JSON.parse(event.data);
+      if (data.answer) {
+        setResponse(data.answer);
+      } else if (data.error) {
+        setError(data.error);
+      }
+      setIsLoading(false);
+      socket.close();
+    };
+
+    socket.onerror = () => {
+      setError("WebSocketエラーが発生しました");
+      setIsLoading(false);
+    };
+
     socket.onclose = (event) => {
       if (event.code === 1006) {
         setError("異常発生");
       } else if (event.code === 1011) {
         setError("サーバーで問題発生");
       }
-    };
-    socket.onerror = () => setError("WebSocketエラーが発生しました");
-
-    return () => socket.close();
-  }, [WS_URL]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setResponse("");
-    setError("");
-    setIsLoading(true);
-
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify({ keyword }));
-
-      ws.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        if (data.answer) {
-          setResponse(data.answer);
-        } else if (data.error) {
-          setError(data.error);
-        }
-        setIsLoading(false);
-      };
-    } else {
-      setError("WebSocket接続が確立されていません");
       setIsLoading(false);
-    }
+    };
   };
 
   return (

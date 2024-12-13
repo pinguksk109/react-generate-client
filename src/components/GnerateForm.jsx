@@ -1,7 +1,7 @@
 import React from "react";
 import RestApiForm from "./RestApiForm";
 import WebSocketForm from "./WebSocketForm.jsx";
-// import "./GeneratePage.scss";
+import "./GenerateForm.scss";
 
 const GeneratePage = ()  => {
   return (

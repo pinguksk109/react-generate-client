@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import "./RestApiForm.scss"
+import "./RestApiForm.scss"
 
 const RestApiForm = () => {
   const [keyword, setKeyword] = useState("");
@@ -17,7 +17,7 @@ const RestApiForm = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post(`${API_URL}/generate`, {
+      const res = await axios.post(`http://${API_URL}/generate`, {
         keyword,
       });
       setResponse(res.data.answer);
