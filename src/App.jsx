@@ -1,5 +1,5 @@
 import React from "react";
-import GenerateForm from "./components/GnerateForm";
+import GenerateForm from "./components/GenerateForm";
 
 const App = () => {
     return (

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./GenerateForm.scss";
+import "./RestApiForm.scss"
 
-const GenerateForm = () => {
+const RestApiForm = () => {
   const [keyword, setKeyword] = useState("");
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
@@ -17,7 +17,7 @@ const GenerateForm = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post(`${API_URL}/generate`, {
+      const res = await axios.post(`http://${API_URL}/generate`, {
         keyword,
       });
       setResponse(res.data.answer);
@@ -29,33 +29,25 @@ const GenerateForm = () => {
   };
 
   return (
-    <div className="generate-form">
-      <h1>豆知識生成</h1>
-      {isLoading && <p className="loading-message">回答を生成中です...</p>}
+    <div className="rest-api-form">
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="keyword">Keyword:</label>
+        <label>
+          キーワード:
           <input
             type="text"
-            id="keyword"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            required
-            disabled={isLoading}
+            disable={isLoading}
           />
-        </div>
+        </label>
         <button type="submit" disabled={isLoading}>
-          {isLoading ? "生成中..." : "Submit"}
+          {isLoading ? "生成中..." : "送信"}
         </button>
       </form>
-      {response && (
-        <div className="response-box">
-          <p>{response}</p>
-        </div>
-      )}
-      {error && <p className="error-message">Error: {error}</p>}
+      {response && <p>{response}</p>}
+      {error && <p className="error">エラー: {error}</p>}
     </div>
   );
 };
 
-export default GenerateForm;
+export default RestApiForm;
