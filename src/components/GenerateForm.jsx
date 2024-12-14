@@ -1,5 +1,5 @@
 import React from "react";
-import RestApiForm from "./RestApiForm";
+import RestApiForm from "./RestApiForm.jsx";
 import WebSocketForm from "./WebSocketForm.jsx";
 import "./GenerateForm.scss";
 

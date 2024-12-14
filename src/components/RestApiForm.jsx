@@ -44,7 +44,7 @@ const RestApiForm = () => {
           {isLoading ? "生成中..." : "送信"}
         </button>
       </form>
-      {response && <p>レスポンス: {response}</p>}
+      {response && <p>{response}</p>}
       {error && <p className="error">エラー: {error}</p>}
     </div>
   );

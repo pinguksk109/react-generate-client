@@ -2,19 +2,105 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+  padding: 2rem;
+  font-family: "Arial", sans-serif;
+  background-color: #f9fafb;
 
-.forms-container {
-  display: flex;
-  gap: 2rem;
-}
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #34495e;
+    text-align: center;
+  }
 
-.form-section {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  width: 300px;
-}
+  .forms-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    overflow-x: auto;
+  }
 
-.error {
-  color: red;
+  .form-section {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      label {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fdfdfd;
+
+        &:focus {
+          outline: none;
+          border-color: #3498db;
+          box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #2c80b4;
+        }
+
+        &:disabled {
+          background-color: #bdc3c7;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .response {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #27ae60;
+    }
+
+    .error {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #e74c3c;
+    }
+  }
 }
