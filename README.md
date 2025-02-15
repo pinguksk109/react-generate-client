@@ -1,4 +1,7 @@
 # Backend
+Interact with LLM
+* REST API
+* WebSocket API
 https://github.com/pinguksk109/generate_api
 
 # Getting Started with Create React App
